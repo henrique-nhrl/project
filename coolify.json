@@ -1,0 +1,20 @@
+{
+  "name": "sistema-admin",
+  "type": "docker",
+  "dockerfile": "./Dockerfile",
+  "port": 80,
+  "env": {
+    "VITE_SUPABASE_URL": "$VITE_SUPABASE_URL",
+    "VITE_SUPABASE_ANON_KEY": "$VITE_SUPABASE_ANON_KEY",
+    "VITE_API_BASE_URL": "$VITE_API_BASE_URL",
+    "VITE_SUPPORT_API_KEY": "$VITE_SUPPORT_API_KEY"
+  },
+  "healthcheck": {
+    "path": "/",
+    "port": 80
+  },
+  "autodeploy": {
+    "enabled": true,
+    "branch": "main"
+  }
+}

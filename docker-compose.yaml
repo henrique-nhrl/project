@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_API_BASE_URL=${VITE_API_BASE_URL}
+      - VITE_SUPPORT_API_KEY=${VITE_SUPPORT_API_KEY}
+    restart: unless-stopped
+
+  # Opcional: Supabase local para desenvolvimento
+  supabase:
+    image: supabase/supabase-local
+    ports:
+      - "54322:5432"
+    environment:
+      POSTGRES_PASSWORD: your-super-secret-password
+    volumes:
+      - ./supabase/migrations:/docker-entrypoint-initdb.d
